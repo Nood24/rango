@@ -6,7 +6,7 @@ def index(request):
       # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage is the same as {{ boldmessage }} in the template!
     context_dict = {'boldmessage': "Boo! I'm a hedgehog! "}
-    category_list = Category.objects.order_by('-likes')[:]
+    category_list = Category.objects.order_by('-likes')[:5]
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
@@ -14,5 +14,9 @@ def index(request):
 	
 
 def about(request):
-		
+	
+	print (request.method)
+	
+	print (request.user)
+	
 	return render(request, 'rango/about.html',{})
