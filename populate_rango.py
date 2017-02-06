@@ -35,9 +35,16 @@ def populate():
          {"title":"Flask",
           "url":"http://flask.pocoo.org"} ]
      
-     cats = {"Python": {"pages": python_pages},
-             "Django": {"pages": django_pages},
-             "Other Frameworks": {"pages": other_pages} }
+    cats = {"Python": {"pages": python_pages, "views":128, "likes":64},
+			"Django": {"pages": django_pages, "views":64, "likes":32},
+        	"Other Frameworks": {"pages": other_pages,"views":32,"likes":16},
+            "Pascal": {"pages": [],"views":32,"likes":16},
+            "Perl": {"pages": [],"views": 32,"likes": 16},
+            "Php": {"pages": [],"views": 32,"likes": 16},
+            "Prolog": {"pages": [],"views": 32,"likes": 16},
+            "Programming": {"pages": [],"views":32,"likes":16},
+
+            }
      
      # If you want to add more catergories or pages,
      # add them to the dictionaries above.
@@ -49,9 +56,9 @@ def populate():
      # for more information about how to iterate over a dictionary properly.
      
      for cat, cat_data in cats.items():
-         c = add_cat(cat)#126,64)Removed
+         c = add_cat(cat, cat_data["views"], cat_data["likes"])
          for p in cat_data["pages"]:
-             add_page(c, p["title"], p["url"])
+             add_page(c, p["title"], p["url"],p["views"])
      
      # Print out the categories we have added.
      for c in Category.objects.all():
@@ -67,8 +74,8 @@ def add_page(cat, title, url, views=0):
  
 def add_cat(name):
 	c = Category.objects.get_or_create(name=name)[0]
-	#c =Category.objects.get_or_create(likes=likes)[0]
-	#c =Category.objects.get_or_create(views=views)[0]
+	c.views=views
+	c.likes=likes
 	c.save()
 	return c
  
