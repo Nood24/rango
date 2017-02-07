@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category
 from rango.models import Page
-
+from rango.forms import PageForm
 
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
@@ -17,6 +17,28 @@ def index(request):
     # Note that the first parameter is the template we wish to use.
 	return render(request, 'rango/index.html', context=context_dict)
 
+def add_page(request, category_name_slug):
+	try:
+		category = Category.objects.get(slug=category_name_slug)
+	except Category.DoesNotExist:
+		category = None
+	form = PageForm()
+	if request.method == 'POST':
+		form = PageForm(request.POST)
+		if form.is_valid():
+			if category:
+				page = form.save(commit=False)
+				page.category = category
+				page.views = 0
+				page.save()
+				return show_category(request, category_name_slug)
+		else:
+			print(form.errors)
+
+	context_dict = {'form':form, 'category': category}
+	return render(request, 'rango/add_page.html', context_dict)	
+
+	
 def add_category(request): 
 	form = CategoryForm()
 	if request.method == 'POST': 
