@@ -1,27 +1,33 @@
 
 <!DOCTYPE html>
 
-{% load staticfiles %} <!-- New line -->
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
 
-<html>
-    <head>
-        <title>Rango - About</title>
-    </head>
-    
-    <body>
-        <h1>This tutorial has been put together by</h1>
-        
+{% block title_block %}
+		About
+	{% endblock %}
+
+	{% block body_block %}
         <div>
-            Neil Wood! <br />
-            <strong>{{ boldmessage }}</strong><br />
-        </div>
-        
-        <div>
-            <a href="/rango/">Go Home</a><br />
-            <img src="{% static "images/castle.jpg" %}"
-                 alt="Picture of castle" /> <!-- New line -->
-        </div>
-    </body>
-    
-</html>
+	        <h1 class="page-header">About Page</h1>			
+	        This tutorial was put together by Neil!<br>
+			<a href="/rango/">Go Home</a><br />
+		</div>	
+		<p>
+		<img src="{% static "images/cat.jpg" %}"
+	</p>
+	<hr>
+	{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
 
