@@ -24,14 +24,12 @@ SECRET_KEY = 'ot)_m)h8qc)4r2f3ev*ay59-d*kw6_(5h@qir!_uoa0@8p1npg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
+TEMPLATE_DIR=os.path.join(BASE_DIR, 'templates')
+MEDIA_DIR=os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT=MEDIA_DIR
+MEDIA_URL='/media/'
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
